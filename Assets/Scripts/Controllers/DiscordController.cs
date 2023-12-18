@@ -1,21 +1,18 @@
 using System;
-using Discord;
 using UnityEngine;
 
 public class DiscordController : MonoBehaviour
 {
-    public long applicationID;
-    [Space]
-    public string details = "Partcle";
-    public string state = " Neutrons";
+    public static DiscordController instance;
+
     public Discord.Discord discord;
 
-    [SerializeField] private Controller controller;
     private long time;
     private static bool instanceExists;
 
     void Awake()
     {
+        instance = this;
         // Transition the GameObject between scenes, destroy any duplicates
         if (!instanceExists)
         {
@@ -27,10 +24,11 @@ public class DiscordController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
         // Log in with the Application ID
-        discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
+        discord = new Discord.Discord(1186104201739259914, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
 
         time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
     }
@@ -62,8 +60,8 @@ public class DiscordController : MonoBehaviour
             var activityManager = discord.GetActivityManager();
             var activity = new Discord.Activity
             {
-                Details = details,
-                State = controller.playerData.neutrons + state,
+                Details = "Partcle",
+                State = Controller.instance.data.neutrons + " Neutrons",
                 Timestamps =
                     {
                         Start = time

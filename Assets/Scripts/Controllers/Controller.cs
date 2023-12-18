@@ -4,29 +4,33 @@ using BreakInfinity;
 
 public class Controller : MonoBehaviour
 {
-    public PlayerData playerData;
-    [SerializeField] private UpgradesManager upgradesManager;
-    [SerializeField] private DiscordController discordController;
-    [SerializeField] private TMP_Text neutronAmtText;
-    [SerializeField] private TMP_Text neutronClickPow;
+    public static Controller instance;
+    private void Awake() => instance = this;
 
-    public void Update()
-    {
-        neutronClickPow.text = "+" + ClickPow() + " Neutrons";
-        neutronAmtText.text = playerData.neutrons + " Neutrons";
-    }
+    public Data data;
 
-    public void NeutronClickGen() 
-    {
-        playerData.neutrons += ClickPow();
-    }
-
-    private BigDouble ClickPow() => 1 + playerData.clickUpgradeLevel;
+    public TMP_Text neutronAmtText;
+    public TMP_Text neutronClickPow;
 
     private void Start()
     {
-        playerData = new PlayerData();
-        upgradesManager.StartUpgradesManager();
-        discordController.UpdateStatus();
+        data = new Data();
+
+        UpgradesManager.instance.StartUpgradesManager();
+
+        DiscordController.instance.UpdateStatus();
+    }
+    
+    private BigDouble ClickPow() => 1 + data.clickUpgradeLevel;
+    
+    public void Update()
+    {
+        neutronClickPow.text = "+" + ClickPow() + " Neutrons";
+        neutronAmtText.text = data.neutrons + " Neutrons";
+    }
+
+    public void NeutronClickGen()
+    {
+        data.neutrons += ClickPow();
     }
 }

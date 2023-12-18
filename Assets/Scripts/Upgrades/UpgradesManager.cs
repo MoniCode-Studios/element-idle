@@ -1,37 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
 using BreakInfinity;
 using UnityEngine;
 
 public class UpgradesManager : MonoBehaviour
 {
-    [SerializeField] private Controller controller;
-    [SerializeField] private Upgrades upgrades;
-    private BigDouble baseClickUpgradeCost;
-    private BigDouble clickUpgradeCostMulti;
+    public static UpgradesManager instance;
+    private void Awake() => instance = this;
 
     public void StartUpgradesManager()
     {
-        baseClickUpgradeCost = 10;
-        clickUpgradeCostMulti = 2;
         UpdateUI();
     }
 
     public void BuyUp()
     {
-        if (controller.playerData.neutrons >= Cost())
+        var data = Controller.instance.data;
+        if (data.neutrons >= Cost())
         {
-            controller.playerData.neutrons -= Cost();
-            controller.playerData.clickUpgradeLevel++;
+            data.neutrons -= Cost();
+            data.clickUpgradeLevel++;
             UpdateUI();
         }
-    } 
-    private BigDouble Cost() => baseClickUpgradeCost * BigDouble.Pow(clickUpgradeCostMulti, controller.playerData.clickUpgradeLevel);
+    }
+    private BigDouble Cost() 
+    {
+        var data = Controller.instance.data;
+        return data.clickUpgradeCost * BigDouble.Pow(data.clickUpgradeCostMulti, data.clickUpgradeLevel); 
+    }
+
 
     private void UpdateUI()
     {
-        upgrades.clickUpLVTxt.text = controller.playerData.clickUpgradeLevel.ToString();
-        upgrades.clickUpCostTxt.text = "Cost: " + Cost() + "n";
+        var data = Controller.instance.data;
+        Upgrades.instance.clickUpLVTxt.text = data.clickUpgradeLevel.ToString();
+        Upgrades.instance.clickUpCostTxt.text = "Cost: " + Cost() + "n";
     }
 }
