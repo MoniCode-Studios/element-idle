@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class NewsTickerController : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class NewsTickerController : MonoBehaviour
         newsTxt.rectTransform.anchoredPosition = new Vector2(2000, 0);
     }
 
-    public void onClick() 
+    public void onClick()
     {
         Application.OpenURL(newsTxt.text);
     }
