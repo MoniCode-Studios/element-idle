@@ -3,9 +3,11 @@ using TMPro;
 
 public class Upgrades : MonoBehaviour
 {
-    public static Upgrades instance;
-    private void Awake() => instance = this;
+    public int UpgradeID;
 
-    public TMP_Text clickUpCostTxt;
-    public TMP_Text clickUpLVTxt; 
+    public TMP_Text costTxt;
+    public TMP_Text levelTxt;
+    public TMP_Text powTxt;
+
+    public void BuyClickUpgrade() => UpgradesManager.instance.BuyUpgrade(UpgradeID);
 }

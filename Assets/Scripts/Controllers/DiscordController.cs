@@ -1,15 +1,10 @@
-using System;
 using UnityEngine;
+using System;
 
 public class DiscordController : MonoBehaviour
 {
     public static DiscordController instance;
-
-    public Discord.Discord discord;
-
-    private long time;
     private static bool instanceExists;
-
     void Awake()
     {
         instance = this;
@@ -25,6 +20,8 @@ public class DiscordController : MonoBehaviour
         }
     }
 
+    private long time;
+    private Discord.Discord discord;
     void Start()
     {
         // Log in with the Application ID
@@ -70,15 +67,15 @@ public class DiscordController : MonoBehaviour
 
             activityManager.UpdateActivity(activity, (res) =>
             {
-                if (res != Discord.Result.Ok) Debug.LogWarning("Failed connecting to Discord!");
+                if (res != Discord.Result.Ok) Debug.LogError("Failed connecting to Discord!");
             });
         }
         catch (Exception err)
         {
             // If updating the status fails, Destroy the GameObject
             Destroy(gameObject);
-            Debug.LogWarning("Failed connecting to Discord!");
-            Debug.LogWarning(err.Message);
+            Debug.LogError("Failed connecting to Discord!");
+            Debug.LogError(err.Message);
         }
     }
 }

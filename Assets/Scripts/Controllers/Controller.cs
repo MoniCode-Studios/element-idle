@@ -1,6 +1,6 @@
+using BreakInfinity;
 using UnityEngine;
 using TMPro;
-using BreakInfinity;
 
 public class Controller : MonoBehaviour
 {
@@ -8,25 +8,33 @@ public class Controller : MonoBehaviour
     private void Awake() => instance = this;
 
     public Data data;
-
-    public TMP_Text neutronAmtText;
-    public TMP_Text neutronClickPow;
-
     private void Start()
     {
         data = new Data();
 
         UpgradesManager.instance.StartUpgradesManager();
 
-        DiscordController.instance.UpdateStatus();
+        // DiscordController.instance.UpdateStatus();
     }
     
-    private BigDouble ClickPow() => 1 + data.clickUpgradeLevel;
-    
-    public void Update()
+    public TMP_Text neutronAmtText;
+    public TMP_Text neutronClickPow;
+    private BigDouble ClickPow() {
+        BigDouble total = 1;
+        for (int i = 0; i < data.clickUpgradeLevel.Count; i++)
+        {
+            total += UpgradesManager.instance.clickUpgradesPower[i] * data.clickUpgradeLevel[i];
+        }
+        return total;
+    }
+
+    private void Update()
     {
         neutronClickPow.text = "+" + ClickPow() + " Neutrons";
         neutronAmtText.text = data.neutrons + " Neutrons";
+        if (Input.GetButtonDown("NMake")) {
+            NeutronClickGen();
+        }
     }
 
     public void NeutronClickGen()
