@@ -58,7 +58,7 @@ public class DiscordController : MonoBehaviour
             var activity = new Discord.Activity
             {
                 Details = "Partcle",
-                State = Controller.instance.data.neutrons + " Neutrons",
+                State = MainController.instance.data.neutrons + " Neutrons",
                 Timestamps =
                     {
                         Start = time

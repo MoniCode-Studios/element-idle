@@ -22,14 +22,14 @@ public class UpgradesManager : MonoBehaviour
 
     public void StartUpgradesManager()
     {
-        Methods.UpgradeCheck(ref Controller.instance.data.clickUpgradeLevel, 3);
+        Methods.UpgradeCheck(ref MainController.instance.data.clickUpgradeLevel, 3);
 
         clickUpgradeNames = new[] { "Click Power +1", "Click Power +5", "Click Power +10" };
         clickUpgradesCost = new BigDouble[] { 10, 50, 100 };
         clickUpgradesCostMulti = new BigDouble[] { 2, 2.1, 2.2 };
         clickUpgradesPower = new BigDouble[] { 1, 5, 10 };
 
-        for (int i = 0; i < Controller.instance.data.clickUpgradeLevel.Count; i++)
+        for (int i = 0; i < MainController.instance.data.clickUpgradeLevel.Count; i++)
         {
             Upgrades upgrade = Instantiate(clickUpgradePrefab, clickUpgradesPanel);
             upgrade.UpgradeID = i;
@@ -43,7 +43,7 @@ public class UpgradesManager : MonoBehaviour
 
     public void BuyUpgrade(int UpgradeID)
     {
-        var data = Controller.instance.data;
+        var data = MainController.instance.data;
         if (data.neutrons >= ClickUpgradeCost(UpgradeID))
         {
             data.neutrons -= ClickUpgradeCost(UpgradeID);
@@ -52,11 +52,11 @@ public class UpgradesManager : MonoBehaviour
 
         ClickUpgradesUIUpdate(UpgradeID);
     }
-    private BigDouble ClickUpgradeCost(int UpgradeID) => (clickUpgradesCost[UpgradeID] * BigDouble.Pow(clickUpgradesCostMulti[UpgradeID], Controller.instance.data.clickUpgradeLevel[UpgradeID])).Round();
+    private BigDouble ClickUpgradeCost(int UpgradeID) => (clickUpgradesCost[UpgradeID] * BigDouble.Pow(clickUpgradesCostMulti[UpgradeID], MainController.instance.data.clickUpgradeLevel[UpgradeID])).Round();
 
     private void ClickUpgradesUIUpdate(int UpgradeID = -1)
     {
-        var data = Controller.instance.data;
+        var data = MainController.instance.data;
         if (UpgradeID == -1)
             for (int i = 0; i < clickUpgrades.Count; i++) UpdateUI(i);
         else UpdateUI(UpgradeID);

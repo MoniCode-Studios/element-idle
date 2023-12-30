@@ -5,15 +5,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class AudioController : MonoBehaviour
 {
-    AudioSource audioData;
-    public GameObject volSliderObj;
 
-    public static AudioController instance;
-    private static bool instanceExists;
     void Awake()
     {
-        instance = this;
-        // Transition the GameObject between scenes, destroy any duplicates
+        bool instanceExists = false;
         if (!instanceExists)
         {
             instanceExists = true;
@@ -25,6 +20,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    AudioSource audioData;
     void Start()
     {
         audioData = GetComponent<AudioSource>();
