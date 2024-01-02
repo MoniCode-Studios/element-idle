@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class AudioController : MonoBehaviour
 {
 
+    public static AudioController instance;
+    private static bool instanceExists;
     void Awake()
     {
-        bool instanceExists = false;
+        instance = this;
+        // Transition the GameObject between scenes, destroy any duplicates
         if (!instanceExists)
         {
             instanceExists = true;

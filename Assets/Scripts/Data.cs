@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BreakInfinity;
 
 public class Data
@@ -11,6 +12,6 @@ public class Data
     {
         neutrons = 10;
 
-        clickUpgradeLevel = Methods.CreateList<BigDouble>(3);
+        clickUpgradeLevel = new BigDouble[3].ToList();
     }
 }
