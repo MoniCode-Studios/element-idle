@@ -9,6 +9,7 @@ public class NewsTickerController : MonoBehaviour
         {"The devloper of this game, [undefined], wants you to try <color=#4848ea>Antimatter Dimensions</color>! (click me)", "https://ivark.github.io/"},
         {"The devloper of this game, [undefined], wants you to try <color=#4848ea>Universal Paperclips</color>! (click me)", "https://www.decisionproblem.com/paperclips/"},
         {"The devloper of this game, [undefined], wants you to try <color=#4848ea>Synergism</color>! (click me)", "https://synergism.cc/"},
+        {"Yes I ripped off Antimatter Dimensions, so go try AD and support them (<color=#4848ea>Antimatter Dimensions! (click me)</color>)", "https://ivark.github.io/"},
         {"The FitnessGram Pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter Pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal *boop*. A single lap should be completed each time you hear this sound *ding*. Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.", ""},
         {"Why is there antimatter here? This game is about matter.", ""},
         {"[ Undefined News ]", ""},
@@ -20,7 +21,9 @@ public class NewsTickerController : MonoBehaviour
         {"\"I think you broke my pulmonary artery\"", ""},
         {"My taste in men, is women", ""},
         {"To who ever wrote the last news ticker, blud think he socrates", ""},
-        {"Placeholder", ""}
+        {"Placeholder", ""},
+        {"Boo, jumpscare!", ""},
+        {"Solution: blunt", ""}
     };
 
     void Start()

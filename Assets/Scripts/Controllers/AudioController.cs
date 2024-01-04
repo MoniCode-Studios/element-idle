@@ -23,18 +23,27 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    AudioSource audioData;
+    public AudioSource audioData;
     void Start()
     {
         audioData = GetComponent<AudioSource>();
         audioData.Play(0);
-        audioData.volume = PlayerPrefs.GetFloat("volume");
+        if (PlayerPrefs.GetInt("playedBefore") == 0)
+        {
+            PlayerPrefs.SetFloat("volume", 1);
+            PlayerPrefs.SetInt("playedBefore", 1);
+            audioData.volume = 1;
+        } else 
+        {
+            audioData.volume = PlayerPrefs.GetFloat("volume");
+        }
     }
 
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "SettingsScene")
         {
+            Debug.Log(PlayerPrefs.GetFloat("volume") + " | " + PlayerPrefs.GetInt("playedBefore"));
             Slider slider = (Slider)FindAnyObjectByType(typeof(Slider));
             audioData.volume = slider.value;
             PlayerPrefs.SetFloat("volume", audioData.volume);
