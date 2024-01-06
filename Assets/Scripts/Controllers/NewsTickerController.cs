@@ -23,7 +23,8 @@ public class NewsTickerController : MonoBehaviour
         {"To who ever wrote the last news ticker, blud think he socrates", ""},
         {"Placeholder", ""},
         {"Boo, jumpscare!", ""},
-        {"Solution: blunt", ""}
+        {"Solution: blunt", ""},
+        {"Somebody cooked here", ""}
     };
 
     void Start()
@@ -40,7 +41,7 @@ public class NewsTickerController : MonoBehaviour
         }
         else
         {
-            newsTxt.rectTransform.anchoredPosition = new Vector3((float)(newsTxt.rectTransform.anchoredPosition.x - 1), 0, 0);
+            newsTxt.rectTransform.anchoredPosition = new Vector3((float)(newsTxt.rectTransform.anchoredPosition.x - 2), 0, 0);
         }
     }
 

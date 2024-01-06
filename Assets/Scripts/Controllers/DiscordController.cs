@@ -17,6 +17,7 @@ public class DiscordController : MonoBehaviour
         else if (FindObjectsOfType(GetType()).Length > 1)
         {
             Destroy(gameObject);
+            Debug.LogWarning("Found dupe of GameObject, destroying GameObject.");
         }
     }
 
@@ -40,7 +41,7 @@ public class DiscordController : MonoBehaviour
         catch
         {
             Destroy(gameObject);
-            Debug.LogWarning("Found dupe of GameObject");
+            Debug.LogWarning("No Discord client found, destroying GameObject.");
         }
     }
 
@@ -74,7 +75,7 @@ public class DiscordController : MonoBehaviour
         {
             // If updating the status fails, Destroy the GameObject
             Destroy(gameObject);
-            Debug.LogError("Failed connecting to Discord!");
+            Debug.LogError("Failed connecting to Discord! Destroying GameObject.");
             Debug.LogError(err.Message);
         }
     }

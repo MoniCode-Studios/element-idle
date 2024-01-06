@@ -18,7 +18,7 @@ public class MainController : MonoBehaviour
     }
     
     private BigDouble ClickPow() {
-        BigDouble total = 1;
+        BigDouble total = 0;
         for (int i = 0; i < data.clickUpgradeLevel.Count; i++)
         {
             total += UpgradesManager.instance.clickUpgradesPower[i] * data.clickUpgradeLevel[i];

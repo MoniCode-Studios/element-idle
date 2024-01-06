@@ -43,7 +43,6 @@ public class AudioController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "SettingsScene")
         {
-            Debug.Log(PlayerPrefs.GetFloat("volume") + " | " + PlayerPrefs.GetInt("playedBefore"));
             Slider slider = (Slider)FindAnyObjectByType(typeof(Slider));
             audioData.volume = slider.value;
             PlayerPrefs.SetFloat("volume", audioData.volume);
