@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BreakInfinity;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,6 +67,20 @@ public class UpgradesManager : MonoBehaviour
             clickUpgrades[ID].levelTxt.text = data.clickUpgradeLevel[ID].ToString();
             clickUpgrades[ID].powTxt.text = $"+{clickUpgradesPower[ID]} Neutron per Click";
             clickUpgrades[ID].costTxt.text = $"Cost: {ClickUpgradeCost(ID):F0} n";
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < clickUpgrades.Count; i++)
+        {
+            if (MainController.instance.data.neutrons < ClickUpgradeCost(i))
+            {
+                clickUpgrades[i].btnImage.color = new Color(1.0f, 0.25f, 0.25f);
+            } else
+            {
+                clickUpgrades[i].btnImage.color = new Color(1.0f, 1.0f, 1.0f);
+            }
         }
     }
 }
